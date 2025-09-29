@@ -1,1 +1,89 @@
 I want to work on Tiles having multiple lives
+2/13/2025
+ - Changed the Ball to be a Sprite instead of a pygame circle
+ - cleaned up some code
+2/27/2025
+ - Added all the Sprites for the UI
+ - Added The UI with 4 different Balls
+ - Added 4 differnet Upgrades
+ - Added the ability to spawn Balls by Clicking on them
+ - Gave Titles to the Different UI's
+ - Added the ability to keep track of instances of a Class.
+2/28/2025
+ - Added Implementation for Upgrades to Work
+ - Started Working on Menu, Opening / Background, for Strength & Speed
+3/3/2025
+ - Worked on the Strength Upgrade UI menu
+ - Added the Basics, just needs a little fine tuning and functionality
+3/4/2025
+ - Added the Speed Menu
+ - Added functionality to the Strength and Speed Menu
+ - You can now upgrade individual balls in Strength and Speed
+ - Speed and Strength Menus now close properly
+ - Code Cleanup
+3/6/2025
+ - Added Title to the Main UI
+ - Added Titles to the Strength and Speed menu
+ - Cleaned Up Code in the UI script dramatically.
+3/7/2025
+ - Added the ability to click on Tiles to earn score.
+ - Made the Tiles sprites instead of pygame rectangles.
+3/10/2025
+ - Moved Level to it's own script
+ - Added different colored Sprites for 10 Tiles
+ - The Sniper Ball now goes to the closest tile
+ - Started Adding the Stats menu for when you hover over the Balls.
+3/11/2025
+ - Finished the Menu for when you hover over the balls
+ - Added the Real Numbers to the Ball Menu
+ - Added Pricing for when you buy a Ball.
+3/17/2025
+ - Random Ball Spawn Locations
+ - Updated scoring and Damage Done
+ - Added a ruff Mouse Menu
+
+
+
+Future Big Changes
+ - Close the Menu if you hover over the Balls.
+ - All Menus Working
+ - Mouse Menu
+ - Prestige Menu
+ - Different Levels (like 5)
+ - Prestige / Settings Menu
+ - Balancing
+ - Sound
+
+
+
+
+
+
+ - finish the stats menu
+ - adding actual stats.
+
+
+
+ - Menu for Buying Balls. (same height at the Ball)
+
+
+
+
+
+
+
+
+
+ - Menu for Strength 4 Buttons / Close Button for the Strength of the 4 Balls
+ - Menu for Speed (Same as the Strength, You can also click on the Updgrade again to close it.)
+
+
+ - All the Upgrades need to do soemthing when you click on them
+ - Need to Make you pay for Balls and Upgrades
+ - The Game needs a Color MakeOver
+ - Prestige... (double Damage/Speed of Balls)
+ - Add a Limit to the Number of Balls (maybe)
+ - Be able to Remove Balls You don't want.
+ - Multiple Levels (Like 10ish and cycle through them)
+
+ - Stats Menu When you Hover Over Balls to Buy. - Yeah

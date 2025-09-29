@@ -1,6 +1,7 @@
 from settings import *
 from sprites import *
 from support import *
+from levels import *
 from groups import AllSprites
 from random import randint
 from ui import *
@@ -21,7 +22,6 @@ class Game:
         self.tile_sprites = pygame.sprite.Group()
         self.ball_sprites = pygame.sprite.Group()
 
-        self.ui = UI(self.balls_surf)
         
         #score
         try:
@@ -29,27 +29,42 @@ class Game:
                 self.score = json.load(score_file)
         except:
             self.score = {'player': 0, 'opponent': 0}
-        self.font = pygame.font.Font("../fonts/VCRLED.ttf", 60)
 
+        self.ui = UI(self.ball_surfs, self.UI_ball_surfs, self.UI_upgrade_surfs, self)
         #spawn level
-        #Level(self.level, self.all_sprites, self.tile_sprites)
-        #spawn ball
-        Level(self.level, self.all_sprites, self.tile_sprites)
-        for i in range (1):
-            self.ball = BasicBall((self.all_sprites, self.ball_sprites), self.tile_sprites, self)
-        #Level(self.level, self.all_sprites, self.tile_sprites)
+        self.level = Level(self, self.tile_surfs, self.all_sprites, self.tile_sprites)
+
+
+    def ball_spawner(self): #spawn ball
+        if NUMBEROFBALLS['Basic Ball'] > BasicBall.instance_count:
+            self.basic_ball = BasicBall((self.all_sprites, self.ball_sprites), self.tile_sprites, self, self.ball_surfs['Basic Ball'])
+        if NUMBEROFBALLS['Speed Ball'] > SpeedBall.instance_count:
+            self.speed_ball = SpeedBall((self.all_sprites, self.ball_sprites), self.tile_sprites, self, self.ball_surfs['Speed Ball'])
+        if NUMBEROFBALLS['Monster Ball'] > MonsterBall.instance_count:
+            self.monster_ball = MonsterBall((self.all_sprites, self.ball_sprites), self.tile_sprites, self, self.ball_surfs['Monster Ball'])
+        if NUMBEROFBALLS['Sniper Ball'] > SniperBall.instance_count:
+            self.sniper_ball = SniperBall((self.all_sprites, self.ball_sprites), self.tile_sprites, self, self.ball_surfs['Sniper Ball'])
+
 
     def display_score(self):
         player_surf = self.font.render(str(self.score['player']), True, '#ffffff')
         player_rect = player_surf.get_frect(topleft = (10, 0))
         self.display_surface.blit(player_surf, player_rect)
 
-    def update_score(self):
-        self.score['player'] += 1
+    def update_score(self, lives, name):
+        if name == 'spawn':
+            self.score['player'] += lives
+        elif lives < 0:
+            self.score['player'] += lives + STRENGTH_LEVEL[name]
+        else:
+            self.score['player'] += STRENGTH_LEVEL[name]
     
     def import_assets(self):
-        self.balls_surf = folder_importer('..', 'images', 'balls')
-
+        self.ball_surfs = folder_importer('..', 'images', 'balls')
+        self.UI_ball_surfs = folder_importer('..', 'images', 'UI', 'UI Balls')
+        self.UI_upgrade_surfs = folder_importer('..', 'images', 'UI', 'UI Upgrades')
+        self.tile_surfs = folder_importer('..', 'images', 'tiles')
+        self.font = pygame.font.Font("../fonts/VCRLED.ttf", 60)
 
     def run(self):
         while self.running:
@@ -60,13 +75,14 @@ class Game:
                     with open(join('..', 'data', 'score.txt'), 'w') as score_file:
                         json.dump(self.score, score_file)
             #update
-            self.all_sprites.update(dt)
-            self.level.update(dt) #updates the level group
-
+            #self.mouse_click()
+            self.ball_spawner()
             #drawing
             self.display_surface.fill(COLORS['background'])
-            self.display_score()
             self.all_sprites.draw()
+            self.all_sprites.update(dt)
+            self.level.update(dt) #updates the level group
+            self.display_score()
             self.ui.draw()
             pygame.display.update()
         pygame.quit()
