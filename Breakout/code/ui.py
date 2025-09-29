@@ -21,7 +21,7 @@ class UI():
 
     def menu(self):
         rect = pygame.FRect(UISIZE['width'], 0, 250, WINDOW_HEIGHT)
-        pygame.draw.rect(self.display_surface, COLORS['UIbackground'], rect, 0, 0)
+        pygame.draw.rect(self.display_surface, COLORS['UIbackground'], rect, 0, 0) 
         #pygame.draw.rect(self.display_surface, 'grey', rect, 4, 0)
 
 
@@ -143,7 +143,7 @@ class UI():
             offset_x = -UI_WIDTH / 4 if i % 2 == 0 else UI_WIDTH / 4
             ball_name = UIBALLS[i]
             level_text = f"{STRENGTH_LEVEL[ball_name]} -> {STRENGTH_LEVEL[ball_name] * 2}" #Double
-            cost_text = f'${STRENGTH_COST[ball_name]}'
+            cost_text = f"${STRENGTH_COST[ball_name]}"
             #Text
             self.Display_Text(self.Title_Font, 'black', (UISIZE['center'] - 250, 98), 'Strength')
             self.Display_Text(self.Strength_UI_Menu_Font, 'black', (UI_CENTER + offset_x, height - 52), level_text)
@@ -264,10 +264,10 @@ class UI():
         for i in range(2):
             if i == 0:
                 level_text = f"{STRENGTH_LEVEL['Click']} -> {STRENGTH_LEVEL['Click'] * 2}"
-                cost_text = f'${STRENGTH_COST['Click']}'
+                cost_text = f"${STRENGTH_COST['Click']}"
             else:
                 level_text = f"{STRENGTH_LEVEL['Click Area']} -> {STRENGTH_LEVEL['Click Area'] * 2}"
-                cost_text = f'${STRENGTH_COST['Click Area']}'
+                cost_text = f"${STRENGTH_COST['Click Area']}"
             self.Display_Text(self.Title_Font, 'black', (UI_CENTER + (UI_WIDTH // 4) - 10, 98), 'Mouse')
             self.Display_Text(self.Strength_UI_Menu_Font, 'black', (UI_CENTER + (UI_WIDTH // 4) - 10, height + 46), level_text)
             self.Display_Text(self.Strength_UI_Menu_Font, 'black', (UI_CENTER + (UI_WIDTH // 4) - 10, height + 205), cost_text)
